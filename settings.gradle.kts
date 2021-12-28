@@ -59,3 +59,4 @@ buildCache {
         isEnabled = !System.getenv().containsKey("CI")
     }
 }
+include("my-mockito-test")
