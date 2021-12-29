@@ -70,6 +70,8 @@ class MockitoVerifyCookbook {
     @Test
     void should_Name5() {
         //5.验证没有意外的交互——这应该会失败：
+        //检查任何给定的 mock 是否有任何未经验证的调用 不推荐使用
+        // 建议用 never 替代 或
         final int size = mockedList.size();
         mockedList.clear();
         verify(mockedList).size();
@@ -79,7 +81,6 @@ class MockitoVerifyCookbook {
     @Test
     void should_Name6() {
         //验证交互顺序：
-        List<String> mockedList = mock(MyList.class);
         final int size = mockedList.size();
         mockedList.add("a parameter");
         mockedList.clear();
@@ -93,7 +94,6 @@ class MockitoVerifyCookbook {
     @Test
     void should_Name7() {
         //验证未发生交互：
-        List<String> mockedList = mock(MyList.class);
         final int size = mockedList.size();
         verify(mockedList, never()).clear();
     }
@@ -101,7 +101,6 @@ class MockitoVerifyCookbook {
     @Test
     void should_Name8() {
         //验证交互至少发生了一定次数：
-        List<String> mockedList = mock(MyList.class);
         mockedList.clear();
         mockedList.clear();
         mockedList.clear();
@@ -113,7 +112,6 @@ class MockitoVerifyCookbook {
     @Test
     void should_Name9() {
         //验证与确切参数的交互：
-        List<String> mockedList = mock(MyList.class);
         mockedList.add("test");
         verify(mockedList).add("test");
     }
@@ -121,7 +119,6 @@ class MockitoVerifyCookbook {
     @Test
     void should_Name10() {
         //验证与 flexible/any 参数的交互：
-        List<String> mockedList = mock(MyList.class);
         mockedList.add("test");
         verify(mockedList).add(anyString());
     }
@@ -129,7 +126,6 @@ class MockitoVerifyCookbook {
     @Test
     void should_Name11() {
         //使用参数捕获验证交互：
-        List<String> mockedList = mock(MyList.class);
         mockedList.addAll(Lists.<String> newArrayList("someElement"));
         ArgumentCaptor<List> argumentCaptor = ArgumentCaptor.forClass(List.class);
         verify(mockedList).addAll(argumentCaptor.capture());
